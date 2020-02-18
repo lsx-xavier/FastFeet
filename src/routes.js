@@ -1,7 +1,9 @@
 import { Router } from 'express';
 
 import SessionLogin from './app/controllers/sessionLogin';
-import CreateRecipient from './app/controllers/createRecipients';
+import RecipientController from './app/controllers/createRecipients';
+
+import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
 
@@ -11,6 +13,9 @@ routes.get('/', (req, res) => {
 
 routes.post('/login', SessionLogin.store);
 
-routes.post('/recipients', CreateRecipient.store);
+routes.use(authMiddleware);
+
+routes.post('/recipients', RecipientController.store);
+routes.post('/recipients/:id', RecipientController.update);
 
 export default routes;

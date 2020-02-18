@@ -34,7 +34,37 @@ class CreateRecipients {
   }
 
   async update(req, res) {
-    const { name } = req.body;
+    const recipient = await Recipient.findOne({
+      where: { id: req.params.id },
+    });
+
+    if (!recipient) {
+      return res.status(401).json({ error: 'Recipient not found' });
+    }
+
+    const {
+      id,
+      name,
+      rua,
+      numero,
+      complemento,
+      estado,
+      cidade,
+      cep,
+    } = await recipient.update(req.body);
+
+    return res.json({
+      recipient: {
+        id,
+        name,
+        rua,
+        numero,
+        complemento,
+        estado,
+        cidade,
+        cep,
+      },
+    });
   }
 }
 
