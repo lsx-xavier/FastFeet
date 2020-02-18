@@ -1,7 +1,23 @@
+import * as Yup from 'yup';
+
 import Recipient from '../models/recipients';
 
 class CreateRecipients {
   async store(req, res) {
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      rua: Yup.string(),
+      numero: Yup.string(),
+      complemento: Yup.string(),
+      estado: Yup.string(),
+      cidade: Yup.string(),
+      cep: Yup.string(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ Error: 'Validation fails!' });
+    }
+
     const recipientExists = await Recipient.findOne({
       where: { name: req.body.name },
     });
@@ -34,6 +50,20 @@ class CreateRecipients {
   }
 
   async update(req, res) {
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      rua: Yup.string(),
+      numero: Yup.string(),
+      complemento: Yup.string(),
+      estado: Yup.string(),
+      cidade: Yup.string(),
+      cep: Yup.string(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ Error: 'Validation fails!' });
+    }
+
     const recipient = await Recipient.findOne({
       where: { id: req.params.id },
     });
