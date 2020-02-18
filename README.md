@@ -14,7 +14,7 @@ Projeto focado para cadastro de Recipients (Destinatários) de uma transportador
 
 ## Meta
 
-Lucas Xavier – [@lsx-xavier](https://github.com/...) – lucas@ongard.com.br
+Lucas Xavier – [@lsx-xavier](https://github.com/lsx-xavier) – lucas@ongard.com.br
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
 
